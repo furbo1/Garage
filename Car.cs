@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Garage
+namespace GarageApp
 {
     class Car:Vehicle
     {
-        public Car(string make, string type, string regNo, int numOfEngines, string fuelType, int numOfSeats, double length, bool hasEngine)
+      
+        public Car(string make, string type, string regNo, string color) : base(make, type, regNo, color)
         {
-                
+           
+            
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}";
+
         }
     }
 }

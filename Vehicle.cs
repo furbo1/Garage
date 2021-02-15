@@ -1,46 +1,42 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Garage
+namespace GarageApp
 {
-    public interface IVehicle<T>:IEnumerable<T>
+    public interface IVehicle 
     {
         public string IDriveMoveSail(double meters);
         public string Turn(string direction);
 
-      
+
 
 
     }
-     abstract class Vehicle : IVehicle
+      class Vehicle : IVehicle, IEnumerable
     {
         private string make;
         private string type;
         
         protected readonly string regNo;
-        private int numOfEngines;
+        private string color;
         private string fuelType;
         private int numOfSeats;
-        private double length;
+        private int length;
         private bool hasEngine;
-
-        public Vehicle( string make, string type, string regNo, int numOfEngines, string fuelType,int numOfSeats,double length, bool hasEngine)
+       
+        public Vehicle( string make, string type, string regNo, string color )
         {
-            Make = make;
-            Type = type;
-            RegNo = regNo;
-            NumOfEngines = numOfEngines;
-            FuelType = fuelType;
-            NumOfSeats = numOfSeats;
-            Lenght = length;
+            Make = make.ToUpper();
+            Type = type.ToUpper();
+            RegNo = regNo.ToUpper();
+            Color = color.ToUpper();
+            //FuelType = fuelType.ToUpper();
+            Length= 1;
             HasEngine = hasEngine;
         }
-
-        public Vehicle()
-        {
-
-        }
+        //var vehicle = new Vehicle("", "", "", "");
 
         public string Make
         {
@@ -57,27 +53,20 @@ namespace Garage
             get { return regNo; }
             set {; }
         }
-        public int NumOfEngines
+
+        public string Color
         {
-            get { return numOfEngines; }
-            set { numOfEngines = value; }
+            get { return color; }
+            set { color = value; }
         }
+
         public string FuelType
         {
             get { return fuelType; }
             set { fuelType = value; }
         }
-        public int NumOfSeats
-        {
-            get { return numOfSeats; }
-            set { numOfSeats = value; }
-        }
 
-        public double Lenght
-        {
-            get { return length; }
-            set { length= value; }
-        }
+        public int Length { get; set; }
 
         public bool HasEngine
         {
@@ -95,18 +84,32 @@ namespace Garage
             return $"Turn {direction}!";
         }
 
-        public string VehicleStats(string make, string type, string regNo, int numOfEngines, string fuelType, int numOfSeats, double length, bool hasEngine)
+        public override string ToString()
         {
             return $"This is a {make} & {type} vehicle \n, registration number: {regNo}\n, " +
-                $"number of engines: {numOfEngines}\n, fuel type: {fuelType}\n, number of seats: {numOfSeats}\n," +
+                $"fuel type: {fuelType}\n, number of seats: {numOfSeats}\n," +
                 $"length {length}\n," +
                 $"has engine: {hasEngine}";
 
         }
 
+
+        public IEnumerator GetEnumerator()
+        {
+            var vehicle = new Vehicle("", "", "", "");
+
+            foreach (var props in vehicle)
+            {
+                if (props != null)
+                    yield return props;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         
-
-
-
     }
 }
