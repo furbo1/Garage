@@ -14,7 +14,7 @@ namespace GarageApp
 
 
     }
-      class Vehicle : IVehicle, IEnumerable
+      class Vehicle : IVehicle
     {
         private string make;
         private string type;
@@ -40,38 +40,38 @@ namespace GarageApp
 
         public string Make
         {
-            get { return make; }
-            set { make = value; }
+            get;
+            set;
         }
         public string Type
         {
-            get { return type; }
-            set { type = value; }
+            get;
+            set;
         }
         public string RegNo
         {
-            get { return regNo; }
-            set {; }
+            get;
+            set;
         }
 
         public string Color
         {
-            get { return color; }
-            set { color = value; }
+            get;
+            set;
         }
 
         public string FuelType
         {
-            get { return fuelType; }
-            set { fuelType = value; }
+            get;
+            set;
         }
 
         public int Length { get; set; }
 
         public bool HasEngine
         {
-            get { return hasEngine; }
-            set { hasEngine = value; }
+            get;
+            set;
         }
 
 
@@ -84,31 +84,17 @@ namespace GarageApp
             return $"Turn {direction}!";
         }
 
-        public override string ToString()
-        {
-            return $"This is a {make} & {type} vehicle \n, registration number: {regNo}\n, " +
-                $"fuel type: {fuelType}\n, number of seats: {numOfSeats}\n," +
-                $"length {length}\n," +
-                $"has engine: {hasEngine}";
+        //public override string ToString()
+        //{
+        //    return $"This is a {make} & {type} vehicle \n, registration number: {regNo}\n, " +
+        //        $"fuel type: {fuelType}\n, number of seats: {numOfSeats}\n," +
+        //        $"length {length}\n," +
+        //        $"has engine: {hasEngine}";
 
-        }
+        //}
 
 
-        public IEnumerator GetEnumerator()
-        {
-            var vehicle = new Vehicle("", "", "", "");
-
-            foreach (var props in vehicle)
-            {
-                if (props != null)
-                    yield return props;
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+       
 
         
     }

@@ -47,7 +47,7 @@ namespace GarageApp
            
         }
 
-         public bool SanitizeVehicleInput(T vehicle)
+         public bool SanitizeVehicleInput(Vehicle vehicle)
         {
             if(vehicle == null)
             {
@@ -56,29 +56,50 @@ namespace GarageApp
             return true;
         }
 
-        public void DisplayAllVehicles()
+        public  void DisplayAllVehicles()
         {
-            Vehicle vehicle = null;
-            for(int i = 0; i< vehiclesParked.Length; i++)
+            T[] newVehiclesParked = new T[ParkingLotsAvailable()];
+            var vehicles = new List<T>();
+            int countNull = 0;
+            for (int i = 0; i < vehiclesParked.Length; i++)
             {
-                vehicle = vehiclesParked[i];
-                if(SanitizeVehicleInput(vehicle))
+               
+                if (!SanitizeVehicleInput(vehiclesParked[i]))
                 {
-                    Utils.Print($"This is a {vehicle.Make} & {vehicle.Type} vehicle \n, registration number: {vehicle.RegNo}\n, " +
-                $"fuel type: {vehicle.FuelType}\n, number of seats: {vehicle.NumOfSeats}\n," +
-                $"length {vehicle.Length}\n," );
+
+                    Utils.Print("There are no vehicles in the garage.");
+                    break;
+                   
                 }
                 else
                 {
-                    Utils.Print("There are no vehicles in the garage.");
+                   
+                    vehicles.Add(vehiclesParked[i]);
                 }
-                
-                    
+                Utils.Print(str: $"Vehicle {vehiclesParked[i].Make}, model {vehiclesParked[i].Type}, registration number {vehiclesParked[i].RegNo} & color {vehiclesParked[i].Color} to garage!\n ");
+                countNull++;
+
+            }
+
+            //foreach(T v in vehicles)
+            //{
+            //    if(!SanitizeVehicleInput(v))
+            //    {
+
+            //        Utils.Print("There are no vehicles in the garage.");
+            //        break; 
+
+            //    }
+            //    else
+            //    {
+            //        Utils.Print(str: $"Vehicle {v.Make}, model {v.Type}, registration number {v.RegNo} & color {v.Color} to garage!\n ");
+            //        countNull++;
+            //    }
+
+            //}
 
 
-           }
-
-    }
+        }
         public void RemoveVehicle(T vehicle)
         {
            for(var i = 0; i < vehiclesParked.Length; i++)
