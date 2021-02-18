@@ -263,7 +263,7 @@ namespace GarageApp
 
                         //var car = new Car(make, model, regNo, color);
                         
-                        garage.RemoveVehicleByRegNo(regNo);
+                        //garage.RemoveVehicleByRegNo(regNo);
                        
 
 
