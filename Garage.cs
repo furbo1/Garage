@@ -34,10 +34,12 @@ namespace GarageApp
                     if (vehiclesParked[i] == null)
                     {
                         vehiclesParked[i] = vehicle;
+                        lotsCount++;
+                        break;
 
                     }
                 }
-                lotsCount++;
+                
             }
             else
             {
@@ -58,45 +60,29 @@ namespace GarageApp
 
         public  void DisplayAllVehicles()
         {
-            T[] newVehiclesParked = new T[ParkingLotsAvailable()];
-            var vehicles = new List<T>();
-            int countNull = 0;
+          
             for (int i = 0; i < vehiclesParked.Length; i++)
             {
                
-                if (!SanitizeVehicleInput(vehiclesParked[i]))
+                if (!SanitizeVehicleInput(vehiclesParked[0]))
                 {
 
                     Utils.Print("There are no vehicles in the garage.");
                     break;
                    
                 }
+                else if(!SanitizeVehicleInput(vehiclesParked[i]))
+                {
+                    break;
+                }
                 else
                 {
-                   
-                    vehicles.Add(vehiclesParked[i]);
+                    Utils.Print(str: $"Vehicle {vehiclesParked[i].Make}, model {vehiclesParked[i].Type}, registration number {vehiclesParked[i].RegNo} & color {vehiclesParked[i].Color}!\n ");
                 }
-                Utils.Print(str: $"Vehicle {vehiclesParked[i].Make}, model {vehiclesParked[i].Type}, registration number {vehiclesParked[i].RegNo} & color {vehiclesParked[i].Color} to garage!\n ");
-                countNull++;
+               
 
             }
 
-            //foreach(T v in vehicles)
-            //{
-            //    if(!SanitizeVehicleInput(v))
-            //    {
-
-            //        Utils.Print("There are no vehicles in the garage.");
-            //        break; 
-
-            //    }
-            //    else
-            //    {
-            //        Utils.Print(str: $"Vehicle {v.Make}, model {v.Type}, registration number {v.RegNo} & color {v.Color} to garage!\n ");
-            //        countNull++;
-            //    }
-
-            //}
 
 
         }
