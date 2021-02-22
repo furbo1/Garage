@@ -25,9 +25,9 @@ namespace GarageApp
 
         internal void Add(T vehicle)
         {
-            var parkAvailable = ParkingLotsAvailable();
+            
 
-            if (parkAvailable > 0)
+            if (ParkingLotsAvailable() >= 1)
             {
                 for (var i = 0; i < vehiclesParked.Length; i++)
                 {
@@ -35,7 +35,10 @@ namespace GarageApp
                     {
                         vehiclesParked[i] = vehicle;
                         vehicleCount++;
-                        ParkingLotsAvailable();
+                       
+                        Utils.Print(str: $"Congratulations, you added a car {vehicle.Make}, model {vehicle.Type}, registration number is: {vehicle.RegNo} & color {vehicle.Color} to garage!\n " +
+                            $"Number of parking lots available is { ParkingLotsAvailable() }");
+                        
                         break;
 
                     }
@@ -45,6 +48,7 @@ namespace GarageApp
             else
             {
                 Utils.Print("Unfortunately there are no parking lots availble, please return later!");
+                
               
             }
            

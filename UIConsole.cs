@@ -92,9 +92,9 @@ namespace GarageApp
         public void AddVehicleMenu()
         {
 
-            while (true)
+            while (garage.ParkingLotsAvailable() > 0)
             {
-                Console.Clear();
+                
                 Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4,5,6, 0) of your choice"
                     + "\n1. Press 1 to add a Car"
                     + "\n2. Press 2 to add a Boat"
@@ -158,8 +158,7 @@ namespace GarageApp
 
 
                         var car = new Car(make, model, regNo, color);
-                        Utils.Print(str: $"Congratulations, you added a car {car.Make}, model {car.Type}, registration number is: {car.RegNo} & color {car.Color} to garage!\n " +
-                            $"Number of parking lots available is { garage.ParkingLotsAvailable() }");
+                        
                         garage.Add(car);
                  
                         break;
@@ -199,8 +198,8 @@ namespace GarageApp
                             AddVehicleMenu();
                         }
                         var boat = new Boat(bMake, bModel, bRegNo, bColor);
-                        Utils.Print(str: $"Congratulations, you added a Boat {boat.Make}, model {boat.Type}, registration number {boat.RegNo} & color {boat.Color} to garage!\n " +
-                          $"Number of parking lots available is {garage.ParkingLotsAvailable() - garage.CountVehicles()}");
+                        //Utils.Print(str: $"Congratulations, you added a Boat {boat.Make}, model {boat.Type}, registration number {boat.RegNo} & color {boat.Color} to garage!\n " +
+                        //  $"Number of parking lots available is {garage.ParkingLotsAvailable() - garage.CountVehicles()}");
                         garage.Add(boat);
                        
 
@@ -251,8 +250,8 @@ namespace GarageApp
                         }
 
                         var plane = new Plane(pMake, pModel, pRegNo, pColor, int.Parse(pEngines));
-                        Utils.Print(str: $"Congratulations, you added a Plane {plane.Make}, model {plane.Type}, registration number {plane.RegNo} & color {plane.Color} to garage!\n " +
-                           $"Number of parking lots available is { garage.ParkingLotsAvailable() - garage.CountVehicles()}");
+                        //Utils.Print(str: $"Congratulations, you added a Plane {plane.Make}, model {plane.Type}, registration number {plane.RegNo} & color {plane.Color} to garage!\n " +
+                        //   $"Number of parking lots available is { garage.ParkingLotsAvailable() - garage.CountVehicles()}");
 
                         garage.Add(plane);
                         
@@ -305,8 +304,8 @@ namespace GarageApp
 
                         var bus = new Bus(busMake, busModel, busRegNo, busColor, int.Parse(busSeats));
                         
-                        Utils.Print(str: $"Congratulations, you added a Bus {bus.Make}, model {bus.Type}, registration number {bus.RegNo} & color {bus.Color} to garage!\n " +
-                           $"Number of parking lots available is { garage.ParkingLotsAvailable() - garage.CountVehicles()}");
+                        //Utils.Print(str: $"Congratulations, you added a Bus {bus.Make}, model {bus.Type}, registration number {bus.RegNo} & color {bus.Color} to garage!\n " +
+                        //   $"Number of parking lots available is { garage.ParkingLotsAvailable() - garage.CountVehicles()}");
                         garage.Add(bus);
                         break;
                     case '5':
@@ -348,8 +347,8 @@ namespace GarageApp
 
                         var motorcycle = new Motorcycle(mMake, mModel, mRegNo, mColor);
                        
-                        Utils.Print(str: $"Congratulations, you added a Motorcycle {motorcycle.Make}, model {motorcycle.Type}, registration number {motorcycle.RegNo} & color {motorcycle.Color} to garage!\n " +
-                            $"Number of parking lots available is { garage.ParkingLotsAvailable() - garage.CountVehicles()}");
+                        //Utils.Print(str: $"Congratulations, you added a Motorcycle {motorcycle.Make}, model {motorcycle.Type}, registration number {motorcycle.RegNo} & color {motorcycle.Color} to garage!\n " +
+                        //    $"Number of parking lots available is { garage.ParkingLotsAvailable() - garage.CountVehicles()}");
                         garage.Add(motorcycle);
                         break;
 
