@@ -4,11 +4,11 @@ using System.Text;
 
 namespace GarageApp
 {
-   public static class Utils
+    public static class Utils
     {
         public static void Print(this string str)
         {
-           Console.WriteLine(str);
+            Console.WriteLine(str);
         }
 
         public static string ReadLine()
@@ -17,7 +17,10 @@ namespace GarageApp
             return input;
         }
 
-       
+        public static bool CheckForInput(string str)
+            {
+            return (String.IsNullOrEmpty(str) || String.IsNullOrWhiteSpace(str) )? true : false;
+            }
 
 
     }

@@ -12,7 +12,7 @@ namespace GarageApp
 
         private T[] vehiclesParked = null;
         private int parkingLotsInitialCapacity;
-        private int lotsCount;
+        private int vehicleCount;
         
 
         
@@ -34,7 +34,8 @@ namespace GarageApp
                     if (vehiclesParked[i] == null)
                     {
                         vehiclesParked[i] = vehicle;
-                        lotsCount++;
+                        vehicleCount++;
+                        ParkingLotsAvailable();
                         break;
 
                     }
@@ -44,7 +45,7 @@ namespace GarageApp
             else
             {
                 Utils.Print("Unfortunately there are no parking lots availble, please return later!");
-                Environment.Exit(0);
+              
             }
            
         }
@@ -104,7 +105,7 @@ namespace GarageApp
 
         public  int CountVehicles()
         {
-            return vehiclesParked.Length - lotsCount;
+            return vehicleCount;
         }
 
         
@@ -134,7 +135,7 @@ namespace GarageApp
         public int ParkingLotsAvailable()
         {
 
-            return Math.Max(0, (vehiclesParked.Length - lotsCount));
+            return Math.Max(0, (vehiclesParked.Length - vehicleCount));
         }
 
         public IEnumerator<T> GetEnumerator()
