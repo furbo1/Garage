@@ -144,7 +144,7 @@ namespace GarageApp
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < CountVehicles(); i++)
+            for (int i = 0; i < vehiclesParked.Length; i++)
             {
                 yield return vehiclesParked[i] as T;
             }
@@ -152,7 +152,7 @@ namespace GarageApp
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 

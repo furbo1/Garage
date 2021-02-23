@@ -10,100 +10,163 @@ namespace GarageApp
         public int toNum;
         Garage<Vehicle> garage;
        
-       
-        public void Menu()
+       public void SecondMenu()
         {
            
-                while (true)
+            do
+            {
+
+                Console.WriteLine("Please navigate through the menu by inputting the number \n( 2, 3 ,4, 5, 0) of your choice"
+                       + "\n2. Display all the vehicles in the garage"
+                       + "\n3. Add vehicles to garage"
+                       + "\n4. Remove vehicles from garage"
+                        + "\n5. Search vehicles in garage"
+                       + "\n0. Exit the application");
+
+                char input = ' '; //Creates the character input to be used with the switch-case below.
+                try
                 {
+                    input = Utils.ReadLine()[0]; //Tries to set input to the first char in an input line
 
-                
-                    Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
-                        + "\n1. Instatiate a new garage with the desired number of parking lots"
-                        + "\n2. Display all the vehicles in the garage"
-                        + "\n3. Add vehicles to garage"
-                        + "\n4. Remove vehicles from garage"
-                         + "\n5. Search vehicles in garage"
-                        + "\n0. Exit the application");
-                    char input = ' '; //Creates the character input to be used with the switch-case below.
-                    try
-                    {
-                        input = Utils.ReadLine()[0]; //Tries to set input to the first char in an input line
-                    }
-                    catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
-                    {
-                        Console.Clear();
-                        Utils.Print("Please enter some input!");
-                    }
-                    switch (input)
-                    {
-                        case '1':
-                            Utils.Print("Enter the number of parking lots to create a garage.");
-                        var userInput = Utils.ReadLine();
-                        int value;
-                        if(String.IsNullOrEmpty(userInput))
-                        {
-                            Utils.Print("Enter the number of parking lots to create a garage.");
-                            break;
-                        } else if(!int.TryParse(userInput, out value))
-                        {
-                            Utils.Print("Enter the number of parking lots to create a garage.");
-                            break;
-                        }
-                        else 
-                        {
-                            garage = new Garage<Vehicle>(Int32.Parse(userInput));
+                }
 
-                            Utils.Print(str: $"Congratulations, you created a garage with { garage.ParkingLotsAvailable()} parking lots");
-                        }
+                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                {
+                    Console.Clear();
+                    //Utils.Print("Please enter some input!");
+                }
+                switch (input)
+                {
+                   
 
-                            break;
-                        case '2':
+                    case '2':
                         garage.DisplayAllVehicles();
                         Utils.Print(str: $"There are {garage.ParkingLotsAvailable()} parking lots available.");
 
                         break;
-                        case '3':
+                    case '3':
+                        Console.Clear();
                         Utils.Print("Please follow the below instructions to add vehicles to garage");
                         AddVehicleMenu();
                         break;
-                        case '4':
+                    case '4':
                         Utils.Print("Please follow the below instructions to remove vehicles from the garage");
-                        
-                        
+
+
                         RemoveVehicleMenu();
                         break;
-                        case '5':
-                           
-                            break;
-                      
-                        case '0':
-                            Environment.Exit(0);
-                            break;
-                        default:
-                            Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
-                            break;
-                    }
+                    case '5':
+
+                        break;
+
+                    case '0':
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Please enter some valid input (2 ,3 ,4 , 5, 0)");
+                        break;
                 }
-            
+            } while (true);
+
+        }
+        public void Menu()
+        {
+
+            Console.WriteLine("Please navigate through the menu by inputting the number \n(0 , 1) of your choice"
+                   + "\n1. Instatiate a new garage with the desired number of parking lots"
+                   + "\n0. Exit the application");
+
+            do
+            {
+                char input = ' '; //Creates the character input to be used with the switch-case below.
+                try
+                {
+                    input = Utils.ReadLine()[0]; //Tries to set input to the first char in an input line
+
+                }
+
+                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                {
+                    Console.Clear();
+                    //Utils.Print("Please enter some input!");
+                }
+                switch (input)
+                {
+                    case '1':
+                        Utils.Print("Enter the number of parking lots to create a garage.");
+
+                        var userInput = Utils.ReadLine();
+                        int value;
+                        if (String.IsNullOrEmpty(userInput))
+                        {
+                            Utils.Print("Enter the number of parking lots to create a garage.");
+                            break;
+                        }
+                        else if (!int.TryParse(userInput, out value))
+                        {
+                            Utils.Print("Enter the number of parking lots to create a garage.");
+                            break;
+                        }
+                        else
+                        {
+                            garage = new Garage<Vehicle>(Int32.Parse(userInput));
+
+                            Utils.Print(str: $"Congratulations, you created a garage with { garage.ParkingLotsAvailable()} parking lots");
+                            SecondMenu();
+                            break;
+                        }
+
+                       
+                    case '2':
+                        Console.Clear();
+                        garage.DisplayAllVehicles();
+                        Utils.Print(str: $"There are {garage.ParkingLotsAvailable()} parking lots available.\n");
+                        SecondMenu();
+
+                        break;
+                    case '3':
+                        Console.Clear();
+                        Utils.Print("Please follow the below instructions to add vehicles to garage");
+                        AddVehicleMenu();
+                        break;
+                    case '4':
+                        Utils.Print("Please follow the below instructions to remove vehicles from the garage");
+
+
+                        RemoveVehicleMenu();
+                        break;
+                    case '5':
+
+                        break;
+
+                    case '0':
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Please enter some valid input (0 , 1)");
+                        break;
+                }
+            } while (true);
+
+
 
         }
 
         public void AddVehicleMenu()
         {
+            char input = ' '; //Creates the character input to be used with the switch-case below.
+            
 
             while (garage.ParkingLotsAvailable() > 0)
             {
-                
-                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4,5,6, 0) of your choice"
-                    + "\n1. Press 1 to add a Car"
-                    + "\n2. Press 2 to add a Boat"
-                    + "\n3. Press 3 to add a Plane"
-                    + "\n4. Press 4 to add a Bus"
-                    + "\n5. Press 5 to add a MotorCycle"
-                    + "\n6. Return to previous menu"
-                    + "\n0. Exit the application");
-                char input = ' '; //Creates the character input to be used with the switch-case below.
+                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 , 4, 5, 6, 0) of your choice"
+                   + "\n1. Press 1 to add a Car"
+                   + "\n2. Press 2 to add a Boat"
+                   + "\n3. Press 3 to add a Plane"
+                   + "\n4. Press 4 to add a Bus"
+                   + "\n5. Press 5 to add a MotorCycle"
+                   + "\n6. Return to previous menu"
+                   + "\n0. Exit the application");
                 try
                 {
                     input = Utils.ReadLine()[0]; //Tries to set input to the first char in an input line
@@ -111,7 +174,7 @@ namespace GarageApp
                 catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
                 {
                     Console.Clear();
-                    Utils.Print("Please enter some input!");
+                    //Utils.Print("Please enter some input!");
                 }
                 switch (input)
                 {
@@ -353,10 +416,10 @@ namespace GarageApp
                         break;
 
                     case '6':
-                        Utils.Print($"Return to main menu: {6}");
-                        Menu();
+                        //Utils.Print($"Return to main menu: {6}");
+                        SecondMenu();
                         break;
-
+                        
                     case '0':
                         Environment.Exit(0);
                         break;
