@@ -48,8 +48,7 @@ namespace GarageApp
             else
             {
                 Utils.Print("Unfortunately there are no parking lots availble, please return later!");
-                
-              
+ 
             }
            
         }
@@ -91,28 +90,30 @@ namespace GarageApp
 
 
         }
-        public void RemoveVehicle(T vehicle)
+        public void RemoveVehicleByRegNumber(string regNo)
         {
-           for(var i = 0; i < vehiclesParked.Length; i++)
-            {
-                if(vehiclesParked[i] != null && vehiclesParked[i].Equals(vehicle))
-                {
 
+            regNo = regNo.ToUpper();
+            var count = 0;
+            for (int i = 0; i < vehiclesParked.Length; i++)
+            {
+                if (SanitizeVehicleInput(vehiclesParked[i]) && vehiclesParked[i].RegNo == regNo)
+                {
                     
-                    vehiclesParked[i] = null ;
+                    Utils.Print(str: $"Vehicle {vehiclesParked[i].Make}, model {vehiclesParked[i].Type}, registration number {vehiclesParked[i].RegNo} & color {vehiclesParked[i].Color}!\n ");
+                    vehiclesParked[i] = null;
+                    count++;
+                    vehicleCount--;
+                    Utils.Print($"Vehicle Removed.\n Total number of vehicles parked in garage is {vehicleCount} \n " +
+                        $"and there are {ParkingLotsAvailable()} parking lots available.");
                 }
             }
-
-            Utils.Print($"Vehicle Removed.\n Total number of vehicles parked in garage is {vehiclesParked.Length}");
+            if (count == 0)
+                Console.WriteLine("The vehicle you are looking for does not exist!");
 
         }
 
-        public  int CountVehicles()
-        {
-            return vehicleCount;
-        }
-
-        
+      
         public void FindVehicleByRegNo(string regNo)
         {
             regNo = regNo.ToUpper();
@@ -130,12 +131,6 @@ namespace GarageApp
            Console.WriteLine("The vehicle you are looking for does not exist!");
         }
 
-        
-
-        
-
-       
-
         //internal int SumOfVehicleLengths()
         //{
         //    foreach(Vehicle vehicle in vehiclesParked)
@@ -151,6 +146,10 @@ namespace GarageApp
         {
 
             return Math.Max(0, (vehiclesParked.Length - vehicleCount));
+        }
+        public int CountVehicles()
+        {
+            return vehicleCount;
         }
 
         public IEnumerator<T> GetEnumerator()

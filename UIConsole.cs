@@ -50,19 +50,32 @@ namespace GarageApp
                         AddVehicleMenu();
                         break;
                     case '4':
-                        Utils.Print("Please follow the below instructions to remove vehicles from the garage");
+                        Console.Clear();
+                        Utils.Print("Please enter the registration number below to remove the vehicle:");
+                        var usrInput = Console.ReadLine();
+                        Vehicle v = null;
+                        if (!Utils.CheckForInput(usrInput))
+                        {
+                            garage.RemoveVehicleByRegNumber(usrInput);
+                        }
+                        else
+                        {
+                            SecondMenu();
+                        }
+
+                        break;
 
 
-                        RemoveVehicleMenu();
+
                         break;
                     case '5':
                         Console.Clear();
                         Utils.Print("Please enter the registration number below:");
-                        var usrInput = Console.ReadLine();
-                        Vehicle v = null;
-                        if(!Utils.CheckForInput(usrInput))
+                        var usrInp = Console.ReadLine();
+                        
+                        if(!Utils.CheckForInput(usrInp))
                         {
-                            garage.FindVehicleByRegNo(usrInput);
+                            garage.FindVehicleByRegNo(usrInp);
                         }
                         else
                         {
@@ -145,7 +158,7 @@ namespace GarageApp
                         Utils.Print("Please follow the below instructions to remove vehicles from the garage");
 
 
-                        RemoveVehicleMenu();
+                       
                         break;
                     case '5':
 
