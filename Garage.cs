@@ -113,13 +113,24 @@ namespace GarageApp
         }
 
         
-        public void FindVehicleBy(Vehicle props)
+        public void FindVehicleByRegNo(string regNo)
         {
-            var upperProps = props.ToString();
-            upperProps = upperProps.ToUpper();
-            int propsNum;
-
+            regNo = regNo.ToUpper();
+            var count = 0;
+          foreach(Vehicle v in vehiclesParked)
+            {
+                if(SanitizeVehicleInput(v) && v.RegNo == regNo)
+                {
+                   
+                        Utils.Print(str: $"Vehicle {v.Make}, model {v.Type}, registration number {v.RegNo} & color {v.Color}!\n ");
+                    count++;
+                } 
+            }
+          if(count == 0)          
+           Console.WriteLine("The vehicle you are looking for does not exist!");
         }
+
+        
 
         
 

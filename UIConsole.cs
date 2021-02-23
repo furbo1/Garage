@@ -56,7 +56,19 @@ namespace GarageApp
                         RemoveVehicleMenu();
                         break;
                     case '5':
-
+                        Console.Clear();
+                        Utils.Print("Please enter the registration number below:");
+                        var usrInput = Console.ReadLine();
+                        Vehicle v = null;
+                        if(!Utils.CheckForInput(usrInput))
+                        {
+                            garage.FindVehicleByRegNo(usrInput);
+                        }
+                        else
+                        {
+                            SecondMenu();
+                        }
+                       
                         break;
 
                     case '0':
