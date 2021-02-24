@@ -13,10 +13,7 @@ namespace GarageApp
         private T[] vehiclesParked = null;
         private int parkingLotsInitialCapacity;
         private int vehicleCount;
-        
-
-        
-
+   
         public Garage(int toNum)
         {
             parkingLotsInitialCapacity = toNum;
@@ -25,8 +22,6 @@ namespace GarageApp
 
         internal void Add(T vehicle)
         {
-            
-
             if (ParkingLotsAvailable() >= 1)
             {
                 for (var i = 0; i < vehiclesParked.Length; i++)
@@ -38,12 +33,9 @@ namespace GarageApp
                        
                         Utils.Print(str: $"Congratulations, you added a car {vehicle.Make}, model {vehicle.Type}, registration number is: {vehicle.RegNo} & color {vehicle.Color} to garage!\n " +
                             $"Number of parking lots available is { ParkingLotsAvailable() }");
-                        
                         break;
-
                     }
                 }
-                
             }
             else
             {
@@ -67,13 +59,10 @@ namespace GarageApp
           
             for (int i = 0; i < vehiclesParked.Length; i++)
             {
-               
                 if (!SanitizeVehicleInput(vehiclesParked[0]))
                 {
-
                     Utils.Print("There are no vehicles in the garage.");
                     break;
-                   
                 }
                 else if(!SanitizeVehicleInput(vehiclesParked[i]))
                 {
@@ -83,13 +72,9 @@ namespace GarageApp
                 {
                     Utils.Print(str: $"Vehicle {vehiclesParked[i].Make}, model {vehiclesParked[i].Type}, registration number {vehiclesParked[i].RegNo} & color {vehiclesParked[i].Color}!\n ");
                 }
-               
-
             }
-
-
-
         }
+       
         public void RemoveVehicleByRegNumber(string regNo)
         {
 
@@ -110,7 +95,6 @@ namespace GarageApp
             }
             if (count == 0)
                 Console.WriteLine("The vehicle you are looking for does not exist!");
-
         }
 
       
@@ -122,7 +106,6 @@ namespace GarageApp
             {
                 if(SanitizeVehicleInput(v) && v.RegNo == regNo)
                 {
-                   
                         Utils.Print(str: $"Vehicle {v.Make}, model {v.Type}, registration number {v.RegNo} & color {v.Color}!\n ");
                     count++;
                 } 
@@ -131,20 +114,9 @@ namespace GarageApp
            Console.WriteLine("The vehicle you are looking for does not exist!");
         }
 
-        //internal int SumOfVehicleLengths()
-        //{
-        //    foreach(Vehicle vehicle in vehiclesParked)
-        //    {
-        //        sumOfVehicleLengths += vehicle.Length;
-        //    }
-
-        //    return sumOfVehicleLengths;
-
-        //}
 
         public int ParkingLotsAvailable()
         {
-
             return Math.Max(0, (vehiclesParked.Length - vehicleCount));
         }
         public int CountVehicles()
